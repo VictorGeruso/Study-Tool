@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Study Tool</string>
+    <string name="Boas_vindas">Seja Bem vindo ao Study Tool</string>
+    <string name="Informe_nome">Por Favor informe seu nome</string>
+</resources>

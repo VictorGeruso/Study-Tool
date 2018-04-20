@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fragmenthome_floatinbutton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="end|bottom"
+        app:layout_constraintBottom_toTopOf="@+id/fragmenthome_listview"
+        app:layout_constraintEnd_toStartOf="@+id/fragmenthome_listview"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toEndOf="@+id/fragmenthome_listview"
+        app:layout_constraintTop_toBottomOf="@+id/fragmenthome_listview"
+        app:layout_constraintVertical_bias="0.128"
+        android:background="@drawable/bg_floatingactionbutton"
+        android:src="@drawable/ic_add_floatactionbutton"/>
+
+    <ListView
+        android:id="@+id/fragmenthome_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+
+</android.support.constraint.ConstraintLayout>

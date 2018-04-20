@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#32d3cb"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:src="@drawable/logost_sf"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Boas_vindas"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="187dp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Informe_nome"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="206dp" />
+
+     <EditText
+        android:id="@+id/MainActivity_NomeEstudanteID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Nome"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="264dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/MainActivity_BotaoIniciarAppID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="350dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="50dp"/>
+
+
+</LinearLayout>
