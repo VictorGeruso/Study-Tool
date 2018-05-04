@@ -5,12 +5,14 @@
     android:gravity="center">
 
     <EditText
+        android:id="@+id/dialoglayout_nomeMateria"
         android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Nome da matéria" />
 
     <EditText
+        android:id="@+id/dialoglayout_nomeProfessor"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -31,7 +33,8 @@
             android:textColor="@color/colorTextToolbar"
             android:text="Cadastrar"
             android:textAllCaps="false"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            />
 
         <Button
             android:id="@+id/dialoglayout_cancelar"
