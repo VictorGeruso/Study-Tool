@@ -53,11 +53,8 @@ public class StudyToolActivity extends AppCompatActivity {
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, homeFragment).commit();
 
-
-
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_menu);
-
 
     }
 
@@ -73,7 +70,6 @@ public class StudyToolActivity extends AppCompatActivity {
 
     //Tollbar
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -88,4 +84,5 @@ public class StudyToolActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
 }

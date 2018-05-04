@@ -1,7 +1,6 @@
 package loovsoft.com.br.studytool.fragments;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -27,9 +26,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
 
                 if (view == actionButton) {
-
                     abrirCadastroMateria();
-
                 }
 
             }
@@ -47,8 +44,6 @@ public class HomeFragment extends Fragment {
         Button btnCadastrar = view.findViewById(R.id.dialoglayout_cadastrar);
         Button btnCancelar = view.findViewById(R.id.dialoglayout_cancelar);
         builder.setView(view);
-
-
 
         builder.setTitle("Cadastrar matéria");
 
@@ -75,4 +70,5 @@ public class HomeFragment extends Fragment {
         dialog.show();
 
     }
+
 }

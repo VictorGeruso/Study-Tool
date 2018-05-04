@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         android:src="@drawable/logost_sf"
         tools:layout_editor_absoluteX="59dp"
         tools:layout_editor_absoluteY="16dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/textView"
@@ -37,27 +36,29 @@
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="206dp" />
 
-     <EditText
+    <EditText
         android:id="@+id/MainActivity_NomeEstudanteID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Nome"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="264dp"
+        android:padding="10dp"
         android:layout_marginLeft="88dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="264dp" />
 
     <Button
         android:id="@+id/MainActivity_BotaoIniciarAppID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar"
+        android:padding="10dp"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="350dp"
         android:layout_marginLeft="150dp"
-        android:layout_marginTop="50dp"/>
-
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
