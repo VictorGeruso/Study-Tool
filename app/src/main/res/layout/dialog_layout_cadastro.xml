@@ -6,7 +6,7 @@
 
     <EditText
         android:id="@+id/dialoglayout_nomeMateria"
-        android:layout_width="235dp"
+        android:layout_width="233dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Nome da matéria" />
@@ -18,6 +18,32 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:hint="Professor" />
+
+    <TextView
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:text="Horario de Estudos"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/dialoglayout_horario_inicio"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:hint="Inicio"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:inputType="time"/>
+
+    <EditText
+        android:id="@+id/dialoglayout_horario_fim"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:hint="Fim"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:inputType="time"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -42,7 +68,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:background="@drawable/bg_button_cadastrar"
-            android:text="Cacelar"
+            android:text="Cancelar"
             android:textAllCaps="false"
             android:textColor="@color/colorTextToolbar"
             />

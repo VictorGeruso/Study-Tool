@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,20 +42,88 @@ public class HomeFragment extends Fragment {
 
         listaMaterias.setAdapter(adapterListaMaterias);
 
+        listaMaterias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                abrirInformacoesMateria(position);
+            }
+        });
+
         final FloatingActionButton actionButton = rootView.findViewById(R.id.fragmenthome_floatinbutton);
 
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (view == actionButton) {
                     abrirCadastroMateria();
                 }
-
             }
         });
 
         return rootView;
+    }
+
+    private void abrirInformacoesMateria(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View view = inflater.inflate(R.layout.dialog_layout_informacoes, null);
+
+        final TextView nomeMateria = view.findViewById(R.id.dialoglayout_info_materia);
+        final TextView nomeProfessor = view.findViewById(R.id.dialoglayout_info_professor);
+        final TextView horarioInicio = view.findViewById(R.id.dialoglayout_info_horarioinicio);
+        final TextView horarioFim = view.findViewById(R.id.dialoglayout_info_horariofim);
+        Button btnOk = view.findViewById(R.id.dialoglayout_info_btn_ok);
+        Button btnRemover = view.findViewById(R.id.dialoglayout_info_btn_remover);
+        Button btnEditar = view.findViewById(R.id.dialoglayout_info_btn_editar);
+
+        builder.setView(view);
+        builder.setTitle("Informações matéria");
+
+        final AlertDialog dialog = builder.create();
+
+        Materia materiaEscolhida = materias.get(position);
+
+        nomeMateria.setText(materiaEscolhida.getNome());
+        nomeProfessor.setText(materiaEscolhida.getProfessor());
+        horarioInicio.setText(materiaEscolhida.getHorarioInicio());
+        horarioFim.setText(materiaEscolhida.getHorarioFim());
+
+        btnRemover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removerMateria(position);
+                dialog.dismiss();
+                Toast.makeText(getContext(), "Materia Removida com sucesso", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void editarMateria(int position, String nome, String professor, String inicio, String fim) {
+
+    }
+
+    private void removerMateria(int position) {
+        Materia materia = materias.get(position);
+        materia.getId();
+        materias.remove(materia);
+        adapterListaMaterias.notifyDataSetChanged();
     }
 
     private void abrirCadastroMateria() {
@@ -64,10 +134,10 @@ public class HomeFragment extends Fragment {
 
         final EditText nomeMateria = view.findViewById(R.id.dialoglayout_nomeMateria);
         final EditText nomeProfessor = view.findViewById(R.id.dialoglayout_nomeProfessor);
+        final EditText horarioInicio = view.findViewById(R.id.dialoglayout_horario_inicio);
+        final EditText horarioFim = view.findViewById(R.id.dialoglayout_horario_fim);
         Button btnCadastrar = view.findViewById(R.id.dialoglayout_cadastrar);
         Button btnCancelar = view.findViewById(R.id.dialoglayout_cancelar);
-
-
 
         builder.setView(view);
         builder.setTitle("Cadastrar matéria");
@@ -77,11 +147,8 @@ public class HomeFragment extends Fragment {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                validarCadastro(nomeMateria, nomeProfessor);
-
+                validarCadastro(nomeMateria, nomeProfessor, horarioInicio, horarioFim);
                 dialog.dismiss();
-
                 Toast.makeText(getContext(), "Materia Cadastrada com sucesso", Toast.LENGTH_SHORT).show();
             }
         });
@@ -89,42 +156,31 @@ public class HomeFragment extends Fragment {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dialog.dismiss();
-
             }
         });
 
-
         dialog.show();
-
     }
 
-    private void validarCadastro(EditText nomeMateria, EditText nomeProfessor) {
-
+    private void validarCadastro(EditText nomeMateria, EditText nomeProfessor, EditText horarioInicio, EditText horarioFim) {
         String materia = nomeMateria.getText().toString();
         String professor = nomeProfessor.getText().toString();
+        String hInicio = horarioInicio.getText().toString();
+        String hFim = horarioFim.getText().toString();
 
         if(materia.isEmpty() || professor.isEmpty()) {
             nomeMateria.setError("insira um nome");
             nomeProfessor.setError("insira um nome");
         } else {
-
-            cadastrarMateria(materia, professor);
-
+            cadastrarMateria(materia, professor, hInicio, hFim);
         }
-
     }
 
-    private void cadastrarMateria(String materia, String professor) {
-
-        Materia m = new Materia(materia, professor);
-
+    private void cadastrarMateria(String materia, String professor, String inicio, String fim) {
+        Materia m = new Materia(materia, professor, inicio, fim);
         materias.add(m);
-
         adapterListaMaterias.notifyDataSetChanged();
-
     }
-
 
 }
