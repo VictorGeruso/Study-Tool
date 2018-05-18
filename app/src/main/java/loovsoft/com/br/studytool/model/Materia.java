@@ -8,6 +8,10 @@ public class Materia {
     private String horarioInicio;
     private String horarioFim;
 
+    public Materia(){
+
+    }
+
     public Materia(String nome, String professor, String horarioInicio, String horarioFim) {
         this.nome = nome;
         this.professor = professor;
@@ -16,8 +20,20 @@ public class Materia {
         this.id = (int) Math.random();
     }
 
+    public Materia(int id,String nome, String professor, String horarioInicio, String horarioFim) {
+        this.nome = nome;
+        this.professor = professor;
+        this.horarioInicio = horarioInicio;
+        this.horarioFim = horarioFim;
+        this.id = id;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId (int id){
+        this.id = id;
     }
 
     public String getNome() {

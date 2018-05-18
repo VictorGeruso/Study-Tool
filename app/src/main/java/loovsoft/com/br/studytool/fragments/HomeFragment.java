@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import loovsoft.com.br.studytool.BDHelper.MateriasBD;
 import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.adapters.MateriaAdapter;
 import loovsoft.com.br.studytool.model.Materia;
@@ -28,19 +29,25 @@ public class HomeFragment extends Fragment {
     private ArrayList<Materia> materias;
     private ListView listaMaterias;
     private ArrayAdapter adapterListaMaterias;
+    private MateriasBD materiasBD;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        materiasBD = new MateriasBD(getContext());
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
-        materias = new ArrayList<>();
+        materias = materiasBD.listar();
+        materiasBD.close();
 
         adapterListaMaterias = new MateriaAdapter(getContext(),materias);
 
         listaMaterias = rootView.findViewById(R.id.fragmenthome_listview);
 
         listaMaterias.setAdapter(adapterListaMaterias);
+
+        adapterListaMaterias.notifyDataSetChanged();
 
         listaMaterias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -101,7 +108,8 @@ public class HomeFragment extends Fragment {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.dismiss();
+                abrirAlteracaoMateria(position);
             }
         });
 
@@ -115,14 +123,68 @@ public class HomeFragment extends Fragment {
         dialog.show();
     }
 
-    private void editarMateria(int position, String nome, String professor, String inicio, String fim) {
+    private void abrirAlteracaoMateria(int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
+        View view = inflater.inflate(R.layout.dialog_layout_alteracao, null);
+
+        final EditText nomeMateria = view.findViewById(R.id.dialoglayout_alterarNomeMateria);
+        final EditText nomeProfessor = view.findViewById(R.id.dialoglayout_alterarNomeProfessor);
+        final EditText horarioInicio = view.findViewById(R.id.dialoglayout_alterar_horario_inicio);
+        final EditText horarioFim = view.findViewById(R.id.dialoglayout_alterar_horario_fim);
+        Button btnAlterar = view.findViewById(R.id.dialoglayout_btn_alterar);
+        Button btnCancelar = view.findViewById(R.id.dialoglayout_btnAlterar_cancelar);
+
+        builder.setView(view);
+        builder.setTitle("Altera Matéria");
+
+        final AlertDialog dialog = builder.create();
+
+        final Materia materiaEscolhida = materias.get(position);
+
+        nomeMateria.setText(materiaEscolhida.getNome());
+        nomeProfessor.setText(materiaEscolhida.getProfessor());
+        horarioInicio.setText(materiaEscolhida.getHorarioInicio());
+        horarioFim.setText(materiaEscolhida.getHorarioFim());
+
+        btnAlterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = materiaEscolhida.getId();
+                String nome = nomeMateria.getText().toString();
+                String professor = nomeProfessor.getText().toString();
+                String inicio = horarioInicio.getText().toString();
+                String fim = horarioFim.getText().toString();
+
+                validarHorario(horarioInicio,horarioFim,inicio,fim);
+                editarMateria(id,nome,professor,inicio,fim);
+                dialog.dismiss();
+                Toast.makeText(getContext(),"Matéria Alterada com Sucesso!",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void editarMateria(int id, String nome, String professor, String inicio, String fim) {
+        Materia materia = new Materia(id,nome, professor, inicio, fim);
+        materiasBD.alterarMateria(materia);
+        materiasBD.close();
+        adapterListaMaterias.notifyDataSetChanged();
     }
 
     private void removerMateria(int position) {
         Materia materia = materias.get(position);
-        materia.getId();
-        materias.remove(materia);
+        materiasBD.deletarMateria(materia);
+        materiasBD.close();
         adapterListaMaterias.notifyDataSetChanged();
     }
 
@@ -169,17 +231,36 @@ public class HomeFragment extends Fragment {
         String hInicio = horarioInicio.getText().toString();
         String hFim = horarioFim.getText().toString();
 
+        validarHorario(horarioInicio, horarioFim, hInicio, hFim);
         if(materia.isEmpty() || professor.isEmpty()) {
             nomeMateria.setError("insira um nome");
             nomeProfessor.setError("insira um nome");
+
         } else {
             cadastrarMateria(materia, professor, hInicio, hFim);
+
         }
+
+    }
+
+    private void validarHorario(EditText horarioInicio, EditText horarioFim, String hInicio, String hFim) {
+       for (int i = 0; i < materias.size(); i++){
+           String hi = materias.get(i).getHorarioInicio();
+           String hf = materias.get(i).getHorarioFim();
+           if (hi.equals(hf)){
+               horarioFim.setError("Escolha Outro Horario");
+           } else if (hi.equals(hInicio)){
+              horarioInicio.setError("Esse Horario já foi Escolhido");
+           } else if (hf.equals(hFim)){
+              horarioFim.setError("Esse Horario já foi Escolhido");
+           }
+       }
     }
 
     private void cadastrarMateria(String materia, String professor, String inicio, String fim) {
         Materia m = new Materia(materia, professor, inicio, fim);
-        materias.add(m);
+        materiasBD.cadastrarMateria(m);
+        materiasBD.close();
         adapterListaMaterias.notifyDataSetChanged();
     }
 
