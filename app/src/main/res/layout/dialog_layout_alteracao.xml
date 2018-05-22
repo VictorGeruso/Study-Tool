@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/dialoglayout_alterarNomeMateria"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Nome da matéria" />
+
+    <EditText
+        android:id="@+id/dialoglayout_alterarNomeProfessor"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:hint="Professor" />
+
+    <TextView
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:text="Horario de Estudos"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/dialoglayout_alterar_horario_inicio"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:hint="Inicio"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:inputType="time"/>
+
+    <EditText
+        android:id="@+id/dialoglayout_alterar_horario_fim"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:hint="Fim"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:inputType="time"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="20dp">
+        <Button
+            android:id="@+id/dialoglayout_btn_alterar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_button_cadastrar"
+            android:textColor="@color/colorTextToolbar"
+            android:text="Alterar"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            />
+
+        <Button
+            android:id="@+id/dialoglayout_btnAlterar_cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_button_cadastrar"
+            android:text="Cancelar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextToolbar"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
