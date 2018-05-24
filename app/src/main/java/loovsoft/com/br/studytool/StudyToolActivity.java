@@ -21,13 +21,16 @@ public class StudyToolActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private View hView;
+    private SecurityPreferences mSecurityPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_tool);
 
-        nomeEstudante = getIntent().getStringExtra("nomeEstudante");
+        this.mSecurityPreferences = new SecurityPreferences(this);
+
+        this.nomeEstudante = this.mSecurityPreferences.getStoreString("ESTUDANTE");
         
         //header view
         navigationView = findViewById(R.id.nav_view);
