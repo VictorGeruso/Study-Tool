@@ -2,4 +2,7 @@
     <string name="app_name">Study Tool</string>
     <string name="Boas_vindas">Seja Bem vindo ao Study Tool</string>
     <string name="Informe_nome">Por Favor informe seu nome</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
