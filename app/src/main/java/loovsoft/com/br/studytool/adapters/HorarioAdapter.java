@@ -14,6 +14,7 @@ import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.model.Materia;
 
 public class HorarioAdapter  extends ArrayAdapter<Materia> {
+
     private ArrayList<Materia> listaMaterias;
     private Context context;
 
@@ -33,10 +34,18 @@ public class HorarioAdapter  extends ArrayAdapter<Materia> {
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-            visao = inflater.inflate(R.layout.lista_adapter, viewGroup, false);
+            visao = inflater.inflate(R.layout.horario_adapter, viewGroup, false);
         }
 
+        TextView horario = visao.findViewById(R.id.horario_adapter_inicio_fim);
+        TextView nomeMateria = visao.findViewById(R.id.horario_adapter_materia);
+        TextView professor = visao.findViewById(R.id.horario_adapter_professor);
 
+        Materia materia = listaMaterias.get(i);
+
+        horario.setText(materia.getHorarioInicio() + " - " + materia.getHorarioFim());
+        nomeMateria.setText(materia.getNome());
+        professor.setText(materia.getProfessor());
 
         return visao;
     }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_horario"
@@ -7,10 +8,35 @@
     android:layout_marginTop="56dp"
     tools:context=".fragments.HorarioFragment">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horario"
+            android:layout_marginLeft="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Materia"
+            android:layout_marginLeft="50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Professor"
+            android:layout_marginLeft="50dp"/>
+
+    </LinearLayout>
 
     <ListView
-        android:id="@+id/fragmenthome_listview"
+        android:id="@+id/fragmenthorario_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"></ListView>
 
 </FrameLayout>

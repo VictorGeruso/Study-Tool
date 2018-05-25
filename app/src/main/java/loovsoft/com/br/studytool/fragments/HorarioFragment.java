@@ -7,16 +7,43 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import loovsoft.com.br.studytool.BDHelper.MateriasBD;
 import loovsoft.com.br.studytool.R;
+import loovsoft.com.br.studytool.adapters.HorarioAdapter;
+import loovsoft.com.br.studytool.adapters.MateriaAdapter;
+import loovsoft.com.br.studytool.model.Materia;
 
 public class HorarioFragment extends Fragment {
+
+    private ArrayList<Materia> materiaListaBd;
+    private ListView listaMaterias;
+    private ArrayAdapter adapterListaMaterias;
+    private MateriasBD materiasBD;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_horario, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_horario, container, false);
+
+        materiasBD = new MateriasBD(getContext());
+
+        materiaListaBd = materiasBD.listar();
+        materiasBD.close();
+
+        adapterListaMaterias = new HorarioAdapter(getContext(), materiaListaBd);
+
+        listaMaterias = rootView.findViewById(R.id.fragmenthorario_listview);
+
+        listaMaterias.setAdapter(adapterListaMaterias);
+
+        adapterListaMaterias.notifyDataSetChanged();
+
+        return rootView;
     }
 
 }
