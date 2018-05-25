@@ -50,12 +50,12 @@ public class MateriasBD extends SQLiteOpenHelper {
         values.put("horaFim", materia.getHorarioFim());
 
         String[] args = {String.valueOf(materia.getId())};
-        getWritableDatabase().update("materia",values,"id=?",args);
+        getWritableDatabase().update("materia",values,"_id=?",args);
     }
 
     public void deletarMateria(Materia materia){
         String[] args = {String.valueOf(materia.getId())};
-        getWritableDatabase().delete("materia","id=?",args);
+        getWritableDatabase().delete("materia","_id=?",args);
     }
 
     public ArrayList<Materia> listar(){

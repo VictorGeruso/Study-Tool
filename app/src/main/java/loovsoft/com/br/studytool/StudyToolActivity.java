@@ -1,7 +1,11 @@
 package loovsoft.com.br.studytool;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +15,12 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import loovsoft.com.br.studytool.fragments.HomeFragment;
+import loovsoft.com.br.studytool.fragments.HorarioFragment;
 
-public class StudyToolActivity extends AppCompatActivity {
+public class StudyToolActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private String nomeEstudante;
     private NavigationView navigationView;
@@ -59,6 +65,9 @@ public class StudyToolActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_menu);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     private void updateHeader() {
@@ -88,4 +97,35 @@ public class StudyToolActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+
+        if (id == R.id.drawer_view_materia){
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, homeFragment).commit();
+        } else if(id == R.id.drawer_view_horario){
+            Fragment horarioFragment = new HorarioFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, horarioFragment).commit();
+        } else if (id == R.id.drawer_view_atividade){
+            Toast.makeText(this, "Atividade", Toast.LENGTH_SHORT).show();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

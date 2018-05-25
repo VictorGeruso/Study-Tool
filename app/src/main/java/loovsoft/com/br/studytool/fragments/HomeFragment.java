@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,7 +25,7 @@ import loovsoft.com.br.studytool.model.Materia;
 
 public class HomeFragment extends Fragment {
 
-    private ArrayList<Materia> materias;
+    private ArrayList<Materia> materiaListaBd;
     private ListView listaMaterias;
     private ArrayAdapter adapterListaMaterias;
     private MateriasBD materiasBD;
@@ -38,10 +37,10 @@ public class HomeFragment extends Fragment {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
-        materias = materiasBD.listar();
+        materiaListaBd = materiasBD.listar();
         materiasBD.close();
 
-        adapterListaMaterias = new MateriaAdapter(getContext(),materias);
+        adapterListaMaterias = new MateriaAdapter(getContext(), materiaListaBd);
 
         listaMaterias = rootView.findViewById(R.id.fragmenthome_listview);
 
@@ -89,7 +88,7 @@ public class HomeFragment extends Fragment {
 
         final AlertDialog dialog = builder.create();
 
-        Materia materiaEscolhida = materias.get(position);
+        Materia materiaEscolhida = materiaListaBd.get(position);
 
         nomeMateria.setText(materiaEscolhida.getNome());
         nomeProfessor.setText(materiaEscolhida.getProfessor());
@@ -141,7 +140,7 @@ public class HomeFragment extends Fragment {
 
         final AlertDialog dialog = builder.create();
 
-        final Materia materiaEscolhida = materias.get(position);
+        final Materia materiaEscolhida = materiaListaBd.get(position);
 
         nomeMateria.setText(materiaEscolhida.getNome());
         nomeProfessor.setText(materiaEscolhida.getProfessor());
@@ -175,14 +174,24 @@ public class HomeFragment extends Fragment {
     }
 
     private void editarMateria(int id, String nome, String professor, String inicio, String fim) {
-        Materia materia = new Materia(id,nome, professor, inicio, fim);
-        materiasBD.alterarMateria(materia);
-        materiasBD.close();
-        adapterListaMaterias.notifyDataSetChanged();
+
+        for (int i=0; i < materiaListaBd.size(); i++){
+            if (materiaListaBd.get(i).getId() == id){
+                Materia materia = new Materia(id,nome, professor, inicio, fim);
+                materiaListaBd.get(i).setNome(nome);
+                materiaListaBd.get(i).setProfessor(professor);
+                materiaListaBd.get(i).setHorarioInicio(inicio);
+                materiaListaBd.get(i).setHorarioFim(fim);
+                materiasBD.alterarMateria(materia);
+                materiasBD.close();
+                adapterListaMaterias.notifyDataSetChanged();
+            }
+        }
     }
 
     private void removerMateria(int position) {
-        Materia materia = materias.get(position);
+        Materia materia = materiaListaBd.get(position);
+        materiaListaBd.remove(materia);
         materiasBD.deletarMateria(materia);
         materiasBD.close();
         adapterListaMaterias.notifyDataSetChanged();
@@ -244,9 +253,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void validarHorario(EditText horarioInicio, EditText horarioFim, String hInicio, String hFim) {
-       for (int i = 0; i < materias.size(); i++){
-           String hi = materias.get(i).getHorarioInicio();
-           String hf = materias.get(i).getHorarioFim();
+       for (int i = 0; i < materiaListaBd.size(); i++){
+           String hi = materiaListaBd.get(i).getHorarioInicio();
+           String hf = materiaListaBd.get(i).getHorarioFim();
            if (hi.equals(hf)){
                horarioFim.setError("Escolha Outro Horario");
            } else if (hi.equals(hInicio)){
@@ -259,9 +268,9 @@ public class HomeFragment extends Fragment {
 
     private void cadastrarMateria(String materia, String professor, String inicio, String fim) {
         Materia m = new Materia(materia, professor, inicio, fim);
+        materiaListaBd.add(m);
         materiasBD.cadastrarMateria(m);
         materiasBD.close();
         adapterListaMaterias.notifyDataSetChanged();
     }
-
 }
