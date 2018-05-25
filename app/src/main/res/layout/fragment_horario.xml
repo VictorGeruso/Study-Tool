@@ -4,13 +4,13 @@
     android:id="@+id/fragment_horario"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="56dp"
     tools:context=".fragments.HorarioFragment">
 
 
-    <TextView
+    <ListView
+        android:id="@+id/fragmenthome_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment de horario"
-        android:textSize="50sp"/>
+        android:layout_height="match_parent"></ListView>
 
 </FrameLayout>
