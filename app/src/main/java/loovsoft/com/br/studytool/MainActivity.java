@@ -13,11 +13,14 @@ public class MainActivity extends Activity {
 
     private EditText nomeEstudante;
     private Button botaoIniciar;
+    private SecurityPreferences mSecurityPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.mSecurityPreferences = new SecurityPreferences(this);
 
         nomeEstudante = findViewById(R.id.MainActivity_NomeEstudanteID);
         botaoIniciar = findViewById(R.id.MainActivity_BotaoIniciarAppID);
@@ -29,7 +32,7 @@ public class MainActivity extends Activity {
                     Toast.makeText(MainActivity.this, "Por favor, informe seu nome", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent = new Intent(MainActivity.this, StudyToolActivity.class);
-                    intent.putExtra("nomeEstudante", nomeEstudante.getText().toString());
+                    mSecurityPreferences.storeString("ESTUDANTE",nomeEstudante.getText().toString());
                     startActivity(intent);
                     finish();
                 }
