@@ -4,7 +4,7 @@ public class Tarefa {
 
     private Integer id;
     private String tarefa;
-    private boolean checkado;
+    private boolean feito;
 
     public Tarefa(){
 
@@ -38,11 +38,11 @@ public class Tarefa {
     }
 
 
-    public boolean ischeckado() {
-        return checkado;
+    public boolean isFeito() {
+        return feito;
     }
 
-    public void setcheckado(boolean checkado) {
-        this.checkado = checkado;
+    public void setFeito(boolean feito) {
+        this.feito = feito;
     }
 }

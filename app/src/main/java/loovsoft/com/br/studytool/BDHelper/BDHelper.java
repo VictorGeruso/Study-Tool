@@ -24,7 +24,7 @@ public class BDHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
             String materia = "CREATE TABLE materia (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nome TEXT NOT NULL, professor TEXT NOT NULL, horaInicio TEXT NOT NULL, horaFim TEXT NOT NULL);";
 
-            String tarefa = "CREATE TABLE tarefa (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tarefa TEXT NOT NULL, status BOOLEAN);";
+            String tarefa = "CREATE TABLE tarefa (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tarefa TEXT NOT NULL);";
 
             db.execSQL(materia);
             db.execSQL(tarefa);
@@ -52,7 +52,6 @@ public class BDHelper extends SQLiteOpenHelper {
     public void cadastrarTarefa(Tarefa tarefa) {
         ContentValues values = new ContentValues();
         values.put("tarefa", tarefa.getTarefa());
-        values.put("check", tarefa.ischeckado());
 
         getWritableDatabase().insert("tarefa", null,values);
     }
@@ -73,7 +72,6 @@ public class BDHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put("tarefa", tarefa.getTarefa());
-        values.put("check", tarefa.ischeckado());
 
         String[] args = {String.valueOf(tarefa.getId())};
         getWritableDatabase().update("tarefa",values,"_id=?",args);
@@ -90,7 +88,7 @@ public class BDHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Materia> listarMateria(){
-        String[] columns = {"_id","tarefa","check","horaInicio","horaFim"};
+        String[] columns = {"_id","nome","professor","horaInicio","horaFim"};
         Cursor cursor = getReadableDatabase().query("materia", columns,null,null,null,null,null,null);
         ArrayList<Materia> materias = new ArrayList<>();
         while (cursor.moveToNext()){
@@ -108,7 +106,7 @@ public class BDHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Tarefa> listarTarefa(){
-        String[] columns = {"_id","tarefa","check"};
+        String[] columns = {"_id","tarefa"};
         Cursor cursor = getReadableDatabase().query("tarefa", columns,null,null,null,null,null,null);
         ArrayList<Tarefa> tarefas = new ArrayList<>();
         while (cursor.moveToNext()){
@@ -116,7 +114,6 @@ public class BDHelper extends SQLiteOpenHelper {
 
             tarefa.setId(cursor.getInt(0));
             tarefa.setTarefa(cursor.getString(1));
-            tarefa.setcheckado(Boolean.parseBoolean(cursor.getString(2)));
 
             tarefas.add(tarefa);
         }
