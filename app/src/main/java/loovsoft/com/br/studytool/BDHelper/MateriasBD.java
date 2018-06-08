@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 import loovsoft.com.br.studytool.model.Materia;

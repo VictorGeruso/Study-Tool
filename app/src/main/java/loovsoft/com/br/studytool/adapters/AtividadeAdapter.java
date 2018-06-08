@@ -37,13 +37,11 @@ public class AtividadeAdapter extends ArrayAdapter<Atividade> {
         }
 
         TextView assuntoAtividade = visao.findViewById(R.id.lista_atividade_adapter_assuntoAtividade);
-        TextView nomeMateria = visao.findViewById(R.id.lista_atividade_adapter_nomeMateria);
         TextView dataAtividade = visao.findViewById(R.id.lista_atividade_adapter_dataAtividade);
 
         Atividade atividade = listaAtividades.get(i);
 
         assuntoAtividade.setText(atividade.getAssunto());
-        nomeMateria.setText(atividade.getMateria().getNome());
         dataAtividade.setText(atividade.getData().toString());
 
         return visao;

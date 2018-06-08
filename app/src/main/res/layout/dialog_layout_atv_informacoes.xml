@@ -14,15 +14,6 @@
         android:textSize="30sp"/>
 
     <TextView
-        android:id="@+id/dialoglayout_atv_info_materia"
-        android:layout_width="233dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Nome Materia"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
         android:id="@+id/dialoglayout_atv_info_data"
         android:layout_width="116dp"
         android:layout_height="wrap_content"

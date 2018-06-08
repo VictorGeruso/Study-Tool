@@ -1,26 +1,22 @@
 package loovsoft.com.br.studytool.model;
 
-import java.time.LocalDate;
-
 public class Atividade {
 
     private int id;
-    private Materia materia;
-    private LocalDate data;
+    private String data;
     private String assunto;
 
     public Atividade() {
 
     }
 
-    public Atividade(Materia materia, LocalDate data) {
-        this.materia = materia;
+    public Atividade(String assunto, String data) {
+        this.assunto = assunto;
         this.data = data;
-        this.id = (int) Math.random();
     }
 
-    public Atividade(int id, Materia materia, LocalDate data) {
-        this.materia = materia;
+    public Atividade(int id, String assunto, String data) {
+        this.assunto = assunto;
         this.data = data;
         this.id = id;
     }
@@ -33,19 +29,11 @@ public class Atividade {
         this.id = id;
     }
 
-    public Materia getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materia materia) {
-        this.materia = materia;
-    }
-
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(String data) {
         this.data = data;
     }
 

@@ -5,19 +5,11 @@
     android:gravity="center">
 
     <EditText
-        android:id="@+id/dialoglayout_atv_AssuntoAtividade"
+        android:id="@+id/dialoglayout_atv_assuntoAtividade"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Assunto da atividade" />
-
-    <EditText
-        android:id="@+id/dialoglayout_atv_nomeMateria"
-        android:layout_width="233dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:hint="Nme da materia" />
 
     <TextView
         android:layout_width="233dp"
