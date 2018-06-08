@@ -20,7 +20,7 @@ public class Materia {
         this.id = (int) Math.random();
     }
 
-    public Materia(int id,String nome, String professor, String horarioInicio, String horarioFim) {
+    public Materia(int id, String nome, String professor, String horarioInicio, String horarioFim) {
         this.nome = nome;
         this.professor = professor;
         this.horarioInicio = horarioInicio;

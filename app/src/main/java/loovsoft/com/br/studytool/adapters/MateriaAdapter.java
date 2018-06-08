@@ -26,7 +26,6 @@ public class MateriaAdapter extends ArrayAdapter<Materia> {
         super(context, 0, objects);
         this.context = context;
         this.listaMaterias = objects;
-
     }
 
     @Override

@@ -1,7 +1,5 @@
 package loovsoft.com.br.studytool.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import loovsoft.com.br.studytool.BDHelper.MateriasBD;
 import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.adapters.HorarioAdapter;
-import loovsoft.com.br.studytool.adapters.MateriaAdapter;
 import loovsoft.com.br.studytool.model.Materia;
 
 public class HorarioFragment extends Fragment {
