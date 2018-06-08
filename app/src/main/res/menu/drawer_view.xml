@@ -3,4 +3,5 @@
     <item android:id="@+id/drawer_view_materia" android:icon="@drawable/ic_book_menu" android:title="Matérias"/>
     <item android:id="@+id/drawer_view_horario" android:icon="@drawable/ic_note_menu" android:title="Horario de Estudos"/>
     <item android:id="@+id/drawer_view_atividade" android:icon="@drawable/ic_edit_menu" android:title="Atividades Avaliativas"/>
+    <item android:id="@+id/drawer_view_tarefas" android:icon="@drawable/ic_format_list_bulleted_black_24dp" android:title="Lista de Tarefas"/>
 </menu>

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import loovsoft.com.br.studytool.BDHelper.MateriasBD;
+import loovsoft.com.br.studytool.BDHelper.BDHelper;
 import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.adapters.MateriaAdapter;
 import loovsoft.com.br.studytool.model.Materia;
@@ -28,17 +28,17 @@ public class HomeFragment extends Fragment {
     private ArrayList<Materia> materiaListaBd;
     private ListView listaMaterias;
     private ArrayAdapter adapterListaMaterias;
-    private MateriasBD materiasBD;
+    private BDHelper BDHelper;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        materiasBD = new MateriasBD(getContext());
+        BDHelper = new BDHelper(getContext());
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
-        materiaListaBd = materiasBD.listar();
-        materiasBD.close();
+        materiaListaBd = BDHelper.listar();
+        BDHelper.close();
 
         adapterListaMaterias = new MateriaAdapter(getContext(), materiaListaBd);
 
@@ -182,8 +182,8 @@ public class HomeFragment extends Fragment {
                 materiaListaBd.get(i).setProfessor(professor);
                 materiaListaBd.get(i).setHorarioInicio(inicio);
                 materiaListaBd.get(i).setHorarioFim(fim);
-                materiasBD.alterarMateria(materia);
-                materiasBD.close();
+                BDHelper.alterarMateria(materia);
+                BDHelper.close();
                 adapterListaMaterias.notifyDataSetChanged();
             }
         }
@@ -192,8 +192,8 @@ public class HomeFragment extends Fragment {
     private void removerMateria(int position) {
         Materia materia = materiaListaBd.get(position);
         materiaListaBd.remove(materia);
-        materiasBD.deletarMateria(materia);
-        materiasBD.close();
+        BDHelper.deletarMateria(materia);
+        BDHelper.close();
         adapterListaMaterias.notifyDataSetChanged();
     }
 
@@ -269,8 +269,8 @@ public class HomeFragment extends Fragment {
     private void cadastrarMateria(String materia, String professor, String inicio, String fim) {
         Materia m = new Materia(materia, professor, inicio, fim);
         materiaListaBd.add(m);
-        materiasBD.cadastrarMateria(m);
-        materiasBD.close();
+        BDHelper.cadastrarMateria(m);
+        BDHelper.close();
         adapterListaMaterias.notifyDataSetChanged();
     }
 }

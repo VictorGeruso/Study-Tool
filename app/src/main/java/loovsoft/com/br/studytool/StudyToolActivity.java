@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import loovsoft.com.br.studytool.fragments.HomeFragment;
 import loovsoft.com.br.studytool.fragments.HorarioFragment;
+import loovsoft.com.br.studytool.fragments.TarefasFragment;
 
 public class StudyToolActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -111,7 +112,6 @@ public class StudyToolActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-
         if (id == R.id.drawer_view_materia){
             HomeFragment homeFragment = new HomeFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -122,6 +122,10 @@ public class StudyToolActivity extends AppCompatActivity implements NavigationVi
             fragmentManager.beginTransaction().replace(R.id.content_frame, horarioFragment).commit();
         } else if (id == R.id.drawer_view_atividade){
             Toast.makeText(this, "Atividade", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.drawer_view_tarefas){
+            TarefasFragment tarefasFragment = new TarefasFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, tarefasFragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
