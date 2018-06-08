@@ -4,10 +4,19 @@ public class Tarefa {
 
     private Integer id;
     private String tarefa;
-    private boolean check;
+    private boolean checkado;
 
     public Tarefa(){
 
+    }
+
+    public Tarefa(String tarefa){
+        this.tarefa = tarefa;
+    }
+
+    public Tarefa(int id,String tarefa){
+        this.id = id;
+        this.tarefa = tarefa;
     }
 
     public Integer getId() {
@@ -18,9 +27,7 @@ public class Tarefa {
         this.id = id;
     }
 
-    public Tarefa(String tarefa){
-    this.tarefa = tarefa;
-    }
+
 
     public String getTarefa() {
         return tarefa;
@@ -31,11 +38,11 @@ public class Tarefa {
     }
 
 
-    public boolean isCheck() {
-        return check;
+    public boolean ischeckado() {
+        return checkado;
     }
 
-    public void setCheck(boolean check) {
-        this.check = check;
+    public void setcheckado(boolean checkado) {
+        this.checkado = checkado;
     }
 }

@@ -24,11 +24,10 @@ public class BDHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
             String materia = "CREATE TABLE materia (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nome TEXT NOT NULL, professor TEXT NOT NULL, horaInicio TEXT NOT NULL, horaFim TEXT NOT NULL);";
 
-            String tarefa = "CREATE TABLE tarefa (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tarefa TEXT NOT NULL, check INTEGER DEFAULT 0);";
+            String tarefa = "CREATE TABLE tarefa (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tarefa TEXT NOT NULL, status BOOLEAN);";
 
             db.execSQL(materia);
             db.execSQL(tarefa);
-
     }
 
     @Override
@@ -50,6 +49,14 @@ public class BDHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert("materia", null,values);
     }
 
+    public void cadastrarTarefa(Tarefa tarefa) {
+        ContentValues values = new ContentValues();
+        values.put("tarefa", tarefa.getTarefa());
+        values.put("check", tarefa.ischeckado());
+
+        getWritableDatabase().insert("tarefa", null,values);
+    }
+
     public void alterarMateria(Materia materia) {
         ContentValues values = new ContentValues();
 
@@ -62,9 +69,24 @@ public class BDHelper extends SQLiteOpenHelper {
         getWritableDatabase().update("materia",values,"_id=?",args);
     }
 
+    public void alterarTarefa(Tarefa tarefa) {
+        ContentValues values = new ContentValues();
+
+        values.put("tarefa", tarefa.getTarefa());
+        values.put("check", tarefa.ischeckado());
+
+        String[] args = {String.valueOf(tarefa.getId())};
+        getWritableDatabase().update("tarefa",values,"_id=?",args);
+    }
+
     public void deletarMateria(Materia materia){
         String[] args = {String.valueOf(materia.getId())};
         getWritableDatabase().delete("materia","_id=?",args);
+    }
+
+    public void deletarTarefa(Tarefa tarefa){
+        String[] args = {String.valueOf(tarefa.getId())};
+        getWritableDatabase().delete("tarefa","_id=?",args);
     }
 
     public ArrayList<Materia> listarMateria(){
@@ -91,11 +113,10 @@ public class BDHelper extends SQLiteOpenHelper {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
         while (cursor.moveToNext()){
             Tarefa tarefa = new Tarefa();
+
             tarefa.setId(cursor.getInt(0));
             tarefa.setTarefa(cursor.getString(1));
-            tarefa.setCheck(cursor.getInt(2));
-
-            
+            tarefa.setcheckado(Boolean.parseBoolean(cursor.getString(2)));
 
             tarefas.add(tarefa);
         }

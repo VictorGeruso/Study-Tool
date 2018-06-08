@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
-        materiaListaBd = BDHelper.listar();
+        materiaListaBd = BDHelper.listarMateria();
         BDHelper.close();
 
         adapterListaMaterias = new MateriaAdapter(getContext(), materiaListaBd);
