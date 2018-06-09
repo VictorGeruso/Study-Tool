@@ -95,7 +95,7 @@ public class BDHelper extends SQLiteOpenHelper {
             tarefa.setTarefa(cursor.getString(1));
             tarefa.setCheck(cursor.getInt(2));
 
-            
+
 
             tarefas.add(tarefa);
         }
