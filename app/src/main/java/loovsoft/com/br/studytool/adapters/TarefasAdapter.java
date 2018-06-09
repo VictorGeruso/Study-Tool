@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import loovsoft.com.br.studytool.BDHelper.BDHelper;
 import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.model.Materia;
 import loovsoft.com.br.studytool.model.Tarefa;
@@ -19,6 +20,7 @@ import loovsoft.com.br.studytool.model.Tarefa;
 public class TarefasAdapter extends ArrayAdapter<Tarefa> {
     private ArrayList<Tarefa> listaTarefa;
     private Context context;
+    private BDHelper bdHelper;
 
     public TarefasAdapter(@NonNull Context context, @NonNull ArrayList<Tarefa> objects) {
        super(context,0, objects);
@@ -39,6 +41,8 @@ public class TarefasAdapter extends ArrayAdapter<Tarefa> {
         }
 
         TextView textoTarefa = visao.findViewById(R.id.tarefas_adapter_tarefas);
+        bdHelper = new BDHelper(context);
+
         CheckBox check = visao.findViewById(R.id.tarefas_adapter_check);
 
         final Tarefa tarefa = listaTarefa.get(i);
@@ -47,8 +51,12 @@ public class TarefasAdapter extends ArrayAdapter<Tarefa> {
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                tarefa.setCheck(isChecked);
-
+                tarefa.setFeito(isChecked);
+                if (isChecked){
+                    bdHelper.deletarTarefa(tarefa);
+                    listaTarefa.remove(tarefa);
+                }
+                TarefasAdapter.this.notifyDataSetChanged();
             }
         });
 

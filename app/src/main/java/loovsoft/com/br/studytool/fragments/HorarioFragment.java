@@ -29,7 +29,7 @@ public class HorarioFragment extends Fragment {
 
         BDHelper = new BDHelper(getContext());
 
-        materiaListaBd = BDHelper.listar();
+        materiaListaBd = BDHelper.listarMateria();
         BDHelper.close();
 
         adapterListaMaterias = new HorarioAdapter(getContext(), materiaListaBd);
