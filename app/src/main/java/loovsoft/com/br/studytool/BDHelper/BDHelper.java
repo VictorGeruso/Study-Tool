@@ -114,7 +114,6 @@ public class BDHelper extends SQLiteOpenHelper {
 
             tarefa.setId(cursor.getInt(0));
             tarefa.setTarefa(cursor.getString(1));
-
             tarefas.add(tarefa);
         }
 

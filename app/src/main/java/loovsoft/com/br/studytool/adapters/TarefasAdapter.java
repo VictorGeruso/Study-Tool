@@ -53,8 +53,9 @@ public class TarefasAdapter extends ArrayAdapter<Tarefa> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 tarefa.setFeito(isChecked);
                 if (isChecked){
-                    bdHelper.deletarTarefa(tarefa);
                     listaTarefa.remove(tarefa);
+                    bdHelper.deletarTarefa(tarefa);
+
                 }
                 TarefasAdapter.this.notifyDataSetChanged();
             }
