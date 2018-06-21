@@ -7,7 +7,7 @@ import android.content.Intent;
 
 import java.util.Calendar;
 
-public class Util {
+public class UtilEstudo {
 
     private static PendingIntent alarmIntent;
 
@@ -20,7 +20,7 @@ public class Util {
         //Em seguida criamos uma instância da classe Alarm Mangager e uma Intent indicando quem
         //deve ser chamado quando o momento chegar, nesse casso a classe MyNotificationSystem
         AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, MyNotificationSystem.class);
+        Intent intent = new Intent(context, NotificationHorario.class);
 
 
         //Verificamos se o evento já está agendado

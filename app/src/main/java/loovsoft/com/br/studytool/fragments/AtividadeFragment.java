@@ -24,6 +24,7 @@ import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.adapters.AtividadeAdapter;
 import loovsoft.com.br.studytool.model.Atividade;
 import loovsoft.com.br.studytool.model.Materia;
+import loovsoft.com.br.studytool.notifications.UtilAtividade;
 
 public class AtividadeFragment extends Fragment {
 
@@ -247,6 +248,7 @@ public class AtividadeFragment extends Fragment {
         atividadeListaBd.add(a);
         BDHelper.cadastrarAtividade(a);
         BDHelper.close();
+        UtilAtividade.scheduleNotification(getContext(),data);
         adapterListaAtividades.notifyDataSetChanged();
     }
 

@@ -12,17 +12,18 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 import loovsoft.com.br.studytool.R;
+import loovsoft.com.br.studytool.fragments.AtividadeFragment;
 import loovsoft.com.br.studytool.fragments.HorarioFragment;
 
-public class MyNotificationSystem extends BroadcastReceiver {
+public class NotificationAtividade extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
         //Cria a notificação
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(context.getString(R.string.notification_title))
-                .setContentText(context.getString(R.string.notification_text))
+                .setContentTitle(context.getString(R.string.notificationAtividade_title))
+                .setContentText(context.getString(R.string.notificationAtividade_text))
                 .setAutoCancel(true);
 
         //Checa a versão e define se deve ser colocado um ícone grande na notificação
@@ -34,7 +35,7 @@ public class MyNotificationSystem extends BroadcastReceiver {
         }
 
         //Cria uma intent indicanado que activity será chamada quando a notificação for clicada
-        Intent resultIntent = new Intent(context, HorarioFragment.class);
+        Intent resultIntent = new Intent(context, AtividadeFragment.class);
 
         //Se a activity aberta pela notificação não for exclusiva da notificação é necessário criar
         //definir uma pilha
@@ -50,4 +51,5 @@ public class MyNotificationSystem extends BroadcastReceiver {
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(5, mBuilder.build());
     }
+
 }

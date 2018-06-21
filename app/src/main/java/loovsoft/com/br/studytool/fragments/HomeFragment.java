@@ -22,6 +22,7 @@ import loovsoft.com.br.studytool.BDHelper.BDHelper;
 import loovsoft.com.br.studytool.R;
 import loovsoft.com.br.studytool.adapters.MateriaAdapter;
 import loovsoft.com.br.studytool.model.Materia;
+import loovsoft.com.br.studytool.notifications.UtilEstudo;
 
 public class HomeFragment extends Fragment {
 
@@ -270,6 +271,8 @@ public class HomeFragment extends Fragment {
         materiaListaBd.add(m);
         BDHelper.cadastrarMateria(m);
         BDHelper.close();
+        UtilEstudo.scheduleNotification(getContext(), inicio);
         adapterListaMaterias.notifyDataSetChanged();
+
     }
 }
