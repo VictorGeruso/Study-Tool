@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/dialoglayout_tarefa_textoTarefa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Informe a Tarefa"
+        android:gravity="center"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="20dp">
+    <Button
+        android:id="@+id/dialoglayout_tarefa_adicionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_cadastrar"
+        android:textColor="@color/colorTextToolbar"
+        android:text="Adicionar"
+        android:textAllCaps="false"
+        android:layout_marginRight="10dp" />
+
+    <Button
+        android:id="@+id/dialoglayout_tarefa_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/bg_button_cadastrar"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextToolbar">
+
+    </Button>
+    </LinearLayout>
+
+</LinearLayout>
