@@ -244,7 +244,6 @@ public class HomeFragment extends Fragment {
         if(materia.isEmpty() || professor.isEmpty()) {
             nomeMateria.setError("insira um nome");
             nomeProfessor.setError("insira um nome");
-
         } else {
             cadastrarMateria(materia, professor, hInicio, hFim);
 

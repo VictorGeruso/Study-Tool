@@ -1,6 +1,5 @@
 package loovsoft.com.br.studytool;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -15,8 +14,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import loovsoft.com.br.studytool.fragments.AtividadeFragment;
 import loovsoft.com.br.studytool.fragments.HomeFragment;
 import loovsoft.com.br.studytool.fragments.HorarioFragment;
 import loovsoft.com.br.studytool.fragments.TarefasFragment;
@@ -121,7 +120,9 @@ public class StudyToolActivity extends AppCompatActivity implements NavigationVi
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, horarioFragment).commit();
         } else if (id == R.id.drawer_view_atividade){
-            Toast.makeText(this, "Atividade", Toast.LENGTH_SHORT).show();
+            Fragment atividateFagment = new AtividadeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, atividateFagment).commit();
         } else if (id == R.id.drawer_view_tarefas){
             TarefasFragment tarefasFragment = new TarefasFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();

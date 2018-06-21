@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import loovsoft.com.br.studytool.model.Atividade;
 import loovsoft.com.br.studytool.model.Materia;
 import loovsoft.com.br.studytool.model.Tarefa;
 
@@ -26,21 +27,27 @@ public class BDHelper extends SQLiteOpenHelper {
 
             String tarefa = "CREATE TABLE tarefa (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tarefa TEXT NOT NULL);";
 
+            String atividade = "CREATE TABLE atividade (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nome TEXT NOT NULL, materia TEXT NOT NULL, data TEXT NOT NULL);";
+
             db.execSQL(materia);
             db.execSQL(tarefa);
+            db.execSQL(atividade);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             String materia = "DROP TABLE IF EXISTS materia";
             String tarefa = "DROP TABLE IF EXISTS tarefa";
+            String atividade = "DROP TABLE IF EXISTS atividade";
 
             db.execSQL(materia);
             db.execSQL(tarefa);
+            db.execSQL(atividade);
     }
 
     public void cadastrarMateria(Materia materia) {
         ContentValues values = new ContentValues();
+
         values.put("nome", materia.getNome());
         values.put("professor", materia.getProfessor());
         values.put("horaInicio", materia.getHorarioInicio());
@@ -51,9 +58,20 @@ public class BDHelper extends SQLiteOpenHelper {
 
     public void cadastrarTarefa(Tarefa tarefa) {
         ContentValues values = new ContentValues();
+
         values.put("tarefa", tarefa.getTarefa());
 
         getWritableDatabase().insert("tarefa", null,values);
+    }
+
+    public void cadastrarAtividade(Atividade atividade) {
+        ContentValues values = new ContentValues();
+
+        values.put("nome", atividade.getNome());
+        values.put("materia", atividade.getMateria());
+        values.put("data", atividade.getData());
+
+        getWritableDatabase().insert("atividade", null, values);
     }
 
     public void alterarMateria(Materia materia) {
@@ -77,6 +95,17 @@ public class BDHelper extends SQLiteOpenHelper {
         getWritableDatabase().update("tarefa",values,"_id=?",args);
     }
 
+    public void alterarAtividade(Atividade atividade) {
+        ContentValues values = new ContentValues();
+
+        values.put("nome", atividade.getNome());
+        values.put("materia", atividade.getMateria());
+        values.put("data", atividade.getData());
+
+        String[] args = {String.valueOf(atividade.getId())};
+        getWritableDatabase().update("atividade", values, "_id=?", args);
+    }
+
     public void deletarMateria(Materia materia){
         String[] args = {String.valueOf(materia.getId())};
         getWritableDatabase().delete("materia","_id=?",args);
@@ -85,6 +114,11 @@ public class BDHelper extends SQLiteOpenHelper {
     public void deletarTarefa(Tarefa tarefa){
         String[] args = {String.valueOf(tarefa.getId())};
         getWritableDatabase().delete("tarefa","_id=?",args);
+    }
+
+    public void deletarAtividade(Atividade atividade) {
+        String[] args = {String.valueOf(atividade.getId())};
+        getWritableDatabase().delete("atividade", "_id=?", args);
     }
 
     public ArrayList<Materia> listarMateria(){
@@ -119,4 +153,22 @@ public class BDHelper extends SQLiteOpenHelper {
 
         return tarefas;
     }
+
+    public ArrayList<Atividade> listarAtividade() {
+        String[] columns = {"_id", "nome", "materia", "data"};
+        Cursor cursor = getReadableDatabase().query("atividade", columns, null, null, null, null, null, null);
+        ArrayList<Atividade> atividades = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Atividade atividade = new Atividade();
+            atividade.setId(cursor.getInt(0));
+            atividade.setNome(cursor.getString(1));
+            atividade.setMateria(cursor.getString(2));
+            atividade.setData(cursor.getString(3));
+
+            atividades.add(atividade);
+        }
+
+        return atividades;
+    }
+
 }
